@@ -1,0 +1,11 @@
+{
+    "pages": [
+        "poster_page/poster"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "分享海报",
+        "navigationBarTextStyle": "black"
+    }
+}

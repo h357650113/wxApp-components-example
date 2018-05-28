@@ -1,0 +1,12 @@
+<!--pages/pk/result.wxml-->
+<view class="pkResult">
+
+    <button bindtap='save_poster' class="shareBtns">分享战绩</button>
+
+</view>
+
+<!-- 使用绝对定位隐藏 canvas 元素 -->
+
+<view class="poster">
+    <canvas canvas-id='poster' style="width: 630px; height: 868px"></canvas>
+</view>

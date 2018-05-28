@@ -1,0 +1,31 @@
+/* pages/pk/result.wxss */
+page{
+
+    background-image: linear-gradient(to bottom, #03b7ff, #14adfe);
+
+}
+
+.pkResult{
+
+    position: relative;
+
+}
+
+.poster{
+
+    position: fixed;
+    top: -1000px;
+    left: 0rpx;
+
+}
+
+.poster_img{
+
+    position: fixed;
+    top: 50rpx;
+    left: 0;
+    width: 630rpx; 
+    height: 868rpx;
+    z-index: 9999;
+
+}
