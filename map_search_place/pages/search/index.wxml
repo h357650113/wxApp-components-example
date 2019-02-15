@@ -1,0 +1,3 @@
+<!--pages/search/index.wxml-->
+输入：<input bindinput="search" type='text'/>
+<view wx:for="{{searchList}}">{{item.address}}</view>
