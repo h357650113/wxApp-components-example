@@ -1,0 +1,2 @@
+<button bindtap="code">扫码</button>
+<view>扫码结果：{{code}}</view>
