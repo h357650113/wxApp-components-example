@@ -13,6 +13,8 @@
 - ./utils/qqmap-wx-jssdk.min.js
 - 引用需要 appKey ***，提供一个自己使用的测试；服务来源腾讯地图服务
 
+![腾讯地图服务查询示例](./imgs/search.png)
+
 #### map_location : 微信地图定位
 
 - map 修改标签属性可直接进行定位，标记等操作
