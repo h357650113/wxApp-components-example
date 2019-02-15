@@ -1,0 +1,14 @@
+<map
+  id="map"
+  scale="18"
+  style="width: 100%; height: 400rpx;"
+  longitude="{{longitude}}"
+  latitude="{{latitude}}"
+  show-location
+  include-points
+  markers="{{markers}}"
+  show-compass
+  bindmarkertap="markertap"
+  bindtap="tap"
+  subkey="6FHBZ-5UEL5-NUSIZ-QOVY4-Z4HZH-FYFOY"
+></map>
