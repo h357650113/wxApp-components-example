@@ -1,100 +1,109 @@
-let equ = {
-	
-	// 全局录音设备 - 构造函数
-	engRecord(opts){
+/** 录音控件
 
-        let __status = true;
+理论上说，wxApp 同时只能有一个录音控件工作
 
-		// 获取录音控制器句柄
+record 为构造函数，生成录音控件实体
+1. 控件抽象成两个行为
+2. start ( { before(), after() })
+3. stop 触发 after；可以尝试 stop ({ after() })
 
-        const recorderManager = wx.getRecorderManager();
+**/
+function record () {
 
-		// 监听录音开始事件
+  // 录音控件
+  const recorderManager = wx.getRecorderManager()
 
-        recorderManager.onStart(() => {
-			
-			if(opts.start){
-				
-				opts.start();
-				
-			}
-			
-        });
+  let event = {};
 
-		// 监听录音重新开始事件
-		
-        recorderManager.onResume(() => {
+  // 初始化录音设备
+  recorderManager.onStart(() => { });
 
-            // console.log('recorder resume')
+  recorderManager.onPause(() => { });
 
-        });
+  const options = {
 
-		// 监听录音暂停事件
-		
-        recorderManager.onPause(() => {
+    duration: 15000,
+    sampleRate: 44100,
+    numberOfChannels: 1,
+    encodeBitRate: 192000,
+    format: 'mp3',
+    frameSize: 50
 
-            // console.log('recorder pause')
+  };
 
-        });
+  // before / after
+  function record_start(opts) {
 
-		// 监听录音停止事件
-		
-        recorderManager.onStop((_res) => {
+    // 录音开始
+    if (typeof opts.before != 'undefined') {
 
-			if(opts.stop){
-				
-				opts.stop(_res);
-				
-			}
-
-        });
-		
-        recorderManager.onFrameRecorded((res) => {
-
-            const { frameBuffer } = res;
-            // console.log('frameBuffer.byteLength', frameBuffer.byteLength)
-
-        });
-
-        const options = {
-            duration: 10000,
-            sampleRate: 44100,
-            numberOfChannels: 1,
-            encodeBitRate: 192000,
-            format: 'mp3',
-            frameSize: 50
-        }
-
-        return {
-
-            start : function(cb){
-                recorderManager.start(options);
-            },
-
-            stop : function(cb){
-                recorderManager.stop();
-            },
-
-            trigger : function(){
-
-                if(__status){
-
-                    recorderManager.start(options);
-                    __status = false;
-
-                } else {
-
-                    recorderManager.stop();
-                    __status = true;
-
-                }
-
-            }
-            
-        }
+      opts.before();
 
     }
-	
+
+    // 录音结束回调
+    if (typeof opts.after != 'undefined') {
+
+      event.after = opts.after;
+
+    }
+
+    recorderManager.start(options);
+
+  };
+
+  function record_stop(opts) {
+	  
+	  // 录音结束回调
+    if (typeof opts != 'undefined' && typeof opts.after != 'undefined') {
+
+	  // after (r);
+      event.after = opts.after;
+
+    }
+
+    recorderManager.stop();
+
+  };
+
+  recorderManager.onStop((res) => {
+
+    // const { tempFilePath } = res;
+
+    // console.log('record stop')
+
+    // 录音结束事件
+    if (typeof event.after != 'undefined') {
+
+      event.after(res);
+
+    };
+
+  });
+
+  recorderManager.onError((e)=>{
+
+    // 录音结束事件
+    if (typeof event.after != 'undefined') {
+
+      event.after(res);
+
+    };
+
+  });
+
+  recorderManager.onFrameRecorded((res) => {
+
+    // const { frameBuffer } = res;
+    // console.log('frameBuffer.byteLength', frameBuffer.byteLength);
+
+  });
+
+  return {
+    start: record_start,
+    stop: record_stop
+  }
+
 }
 
-module.exports = equ;
+module.exports = record;

@@ -1,22 +1,31 @@
-imoport SYS from 'record.js';
+let Record = require("/utils/record");
+let record = new Record();
 
-// 录音设备
-ENG_RECORD = new SYS.engRecord({
-  
-  // 按下录音按钮
-  start : function(){
+Page({
+	
+  record_start() {
+
+    record.start({
+
+      // 录音之前		
+      before() {}
+	  
+    })
 
   },
+
+  // 手动停止录音
+  record_end() {
+
+    record.stop({
+		
+		// 完成录音
+		after (r) {}
+		
+	})
+
+  },
+
   
-  // 释放录音按钮
-  stop : function(res){
-
-	// 录音存放的临时文件
-    res.tempFilePath
-
-	// 录音时长
-    res.duration
-	
-  }
   
 })
