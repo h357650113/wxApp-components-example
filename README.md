@@ -6,8 +6,6 @@
 
 > equipment_audio_record : 微信小程序 - 录音设备封装控件
 
-- [x] 示例未完成
-
 - ./record_page/record.js 源文件
 - ./record_page/use_record.js 引用示例
 - 测试
@@ -24,6 +22,3 @@
 > qrcode : 微信扫描二维码
 
 - 无需引用第三方插件，直接支持
-
-
-
