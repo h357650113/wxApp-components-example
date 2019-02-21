@@ -12,9 +12,12 @@ Page({
     qqmapsdk = new map({
       key: '6FHBZ-5UEL5-NUSIZ-QOVY4-Z4HZH-FYFOY'
     });
+
     qqmapsdk.search({
+
       // 输入内容
       keyword: e.detail.value,
+      // location: '39.980014,116.313972',  //设置周边搜索中心点
       success: function (res) {
         _this.setData({
           searchList: res.data
@@ -26,6 +29,7 @@ Page({
       complete: function (res) {
         console.log(res);
       }
+
     })
 
   },

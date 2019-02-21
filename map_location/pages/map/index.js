@@ -1,9 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const map = require('../../utils/qqmap-wx-jssdk.min.js');
-
-let qqmapsdk;
 
 Page({
   data: {
