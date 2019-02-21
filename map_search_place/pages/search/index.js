@@ -10,7 +10,7 @@ Page({
 
     // 实例化API核心类
     qqmapsdk = new map({
-      key: '6FHBZ-5UEL5-NUSIZ-QOVY4-Z4HZH-FYFOY'
+      key: '6FHBZ-5UEL5-NUSIZ-QOVY4-Z4HZH-XXXX'
     });
 
     qqmapsdk.search({
